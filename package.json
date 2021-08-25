@@ -2,7 +2,7 @@
     "name": "daydrink",
     "private": true,
     "engines": {
-        "node": "12.13.1",
+        "node": "12.18.2",
         "yarn": ">=1.10.0"
     },
     "scripts": {
@@ -17,22 +17,25 @@
         "@chakra-ui/core": "^0.5.2",
         "@emotion/core": "10.0.27",
         "@emotion/styled": "10.0.27",
+        "@heroicons/react": "^1.0.4",
         "apollo-cache-inmemory": "^1.6.5",
         "apollo-client": "^2.6.8",
         "apollo-link-http": "^1.5.16",
+        "autoprefixer": "^9",
         "date-fns": "^2.9.0",
         "emotion-theming": "10.0.27",
         "firebase": "^7.7.0",
         "graphql": "^14.5.8",
         "graphql-tag": "^2.10.1",
         "isomorphic-unfetch": "^3.0.0",
-        "next": "9.2.0",
-        "next-seo": "3.3.0",
+        "next": "9.4.0",
+        "postcss": "^7",
         "query-string": "^6.10.0",
         "react": "^16.8.6",
         "react-dom": "^16.8.6",
         "react-hook-form": "^4.5.5",
-        "react-map-gl": "^5.2.1"
+        "react-map-gl": "^5.2.1",
+        "tailwindcss": "npm:@tailwindcss/postcss7-compat"
     },
     "devDependencies": {
         "@testing-library/jest-dom": "^5.0.2",

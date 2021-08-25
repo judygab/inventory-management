@@ -157,7 +157,7 @@ export const withSignInRedirect = (Component) => (props) => {
     const signIn = ({email, pass}) => {
         auth.signin(email, pass)
             .then(() => {
-                router.push('/deals');
+                router.push('/items');
             })
             .catch((error) => {
                 toast({

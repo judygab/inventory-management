@@ -28,7 +28,7 @@ import {withAuthModal} from './Auth';
 import {useAuth} from '../utils/auth';
 import WeekdayButtonGroup from './WeekdayButtonGroup';
 
-function AddDealModal({openAuthModal}) {
+function AddItemModal({openAuthModal}) {
     const {userId} = useAuth();
     const initialRef = useRef();
     const {isOpen, onOpen, onClose} = useDisclosure();
@@ -89,7 +89,7 @@ function AddDealModal({openAuthModal}) {
     return (
         <>
             <Button onClick={onOpenDealModal} leftIcon="add" variantColor="teal" variant="solid" minH="40px" w="100%">
-                Add New Deal
+                Add New Item
             </Button>
 
             <Modal initialFocusRef={initialRef} isOpen={isOpen} onClose={onClose} size="25rem">
@@ -111,7 +111,7 @@ function AddDealModal({openAuthModal}) {
                             )
                         )}
                     >
-                        <ModalHeader>Add Deal</ModalHeader>
+                        <ModalHeader>Add Item</ModalHeader>
                         <ModalCloseButton />
                         <ModalBody pb={6}>
                             <FormControl as="fieldset">
@@ -129,65 +129,87 @@ function AddDealModal({openAuthModal}) {
                                     <Radio value="FOOD">Food</Radio>
                                 </RadioGroup>
                             </FormControl>
-                            <FormControl mt={4} isInvalid={errors.description && errors.description.message}>
-                                <FormLabel>Description</FormLabel>
+                            <FormControl mt={4} isInvalid={errors.name && errors.name.message}>
+                                <FormLabel>Name</FormLabel>
                                 <Input
-                                    name="description"
+                                    name="name"
                                     ref={register({
-                                        required: 'Please enter a description.'
+                                        required: 'Please enter a name.'
                                     })}
-                                    placeholder="$3 White Claws"
+                                    placeholder="White Claws"
                                 />
-                                <FormErrorMessage>{errors.description && errors.description.message}</FormErrorMessage>
-                            </FormControl>
-                            <FormControl mt={4} isInvalid={errors.locationId && errors.locationId.message}>
-                                <FormLabel htmlFor="location">Location</FormLabel>
-                                <Select
-                                    ref={register({
-                                        required: 'Please select a location.'
-                                    })}
-                                    name="locationId"
-                                    id="location"
-                                    placeholder="Select Bar"
-                                >
-                                    {data &&
-                                        data.locations.map(({id, name}) => (
-                                            <option key={id} value={id}>
-                                                {name}
-                                            </option>
-                                        ))}
-                                </Select>
-                                <FormErrorMessage>{errors.locationId && errors.locationId.message}</FormErrorMessage>
-                            </FormControl>
-                            <FormControl mt={4} isInvalid={errors.daysActive && errors.daysActive.message}>
-                                <FormLabel htmlFor="daysActive">Days Active</FormLabel>
-                                <WeekdayButtonGroup daysActive={daysActive} onChange={setDaysActive} />
-                                <FormErrorMessage>{errors.daysActive && errors.daysActive.message}</FormErrorMessage>
+                                <FormErrorMessage>{errors.name && errors.name.message}</FormErrorMessage>
                             </FormControl>
                             <Flex>
-                                <FormControl mt={4} mr={4} isInvalid={errors.startTime && errors.startTime.message}>
-                                    <FormLabel>Start Time</FormLabel>
-                                    <Input
-                                        name="startTime"
-                                        ref={register({
-                                            required: 'Please enter a start time.'
-                                        })}
-                                        placeholder="7pm"
-                                    />
-                                    <FormErrorMessage>{errors.startTime && errors.startTime.message}</FormErrorMessage>
-                                </FormControl>
-                                <FormControl mt={4} isInvalid={errors.endTime && errors.endTime.message}>
-                                    <FormLabel>End Time</FormLabel>
-                                    <Input
-                                        name="endTime"
-                                        ref={register({
-                                            required: 'Please enter an end time.'
-                                        })}
-                                        placeholder="2am"
-                                    />
-                                    <FormErrorMessage>{errors.endTime && errors.endTime.message}</FormErrorMessage>
-                                </FormControl>
+                              <FormControl mt={4} mr={4} isInvalid={errors.price && errors.price.message}>
+                                  <FormLabel>Price</FormLabel>
+                                  <Input
+                                      name="price"
+                                      ref={register({
+                                          required: 'Please enter a price.'
+                                      })}
+                                      placeholder="$$"
+                                  />
+                                  <FormErrorMessage>{errors.price && errors.price.message}</FormErrorMessage>
+                              </FormControl>
+                              <FormControl mt={4} isInvalid={errors.quantity && errors.quantity.message}>
+                                  <FormLabel>Quantity</FormLabel>
+                                  <Input
+                                      name="quantity"
+                                      ref={register({
+                                          required: 'Please enter a quantity.'
+                                      })}
+                                      placeholder="3"
+                                  />
+                                  <FormErrorMessage>{errors.quantity && errors.quantity.message}</FormErrorMessage>
+                              </FormControl>
                             </Flex>
+                            <Flex>
+                              <FormControl mt={4} mr={4} isInvalid={errors.price && errors.price.message}>
+                                  <FormLabel>Markup</FormLabel>
+                                  <Input
+                                      name="markup"
+                                      ref={register({
+                                          required: 'Please enter a markup.'
+                                      })}
+                                      placeholder="%"
+                                  />
+                                  <FormErrorMessage>{errors.markup && errors.markup.message}</FormErrorMessage>
+                              </FormControl>
+                              <FormControl mt={4} isInvalid={errors.margin && errors.margin.message}>
+                                  <FormLabel>Margin</FormLabel>
+                                  <Input
+                                      name="margin"
+                                      ref={register({
+                                          required: 'Please enter a margin.'
+                                      })}
+                                      placeholder="%"
+                                  />
+                                  <FormErrorMessage>{errors.margin && errors.margin.message}</FormErrorMessage>
+                              </FormControl>
+                            </Flex>
+                            <FormControl mt={4} isInvalid={errors.supplier && errors.supplier.message}>
+                                <FormLabel>Supplier</FormLabel>
+                                <Input
+                                    name="supplier"
+                                    ref={register({
+                                        required: 'Please enter a Supplier.'
+                                    })}
+                                    placeholder=""
+                                />
+                                <FormErrorMessage>{errors.supplier && errors.supplier.message}</FormErrorMessage>
+                            </FormControl>
+                            <FormControl mt={4} isInvalid={errors.department && errors.department.message}>
+                                <FormLabel>Department</FormLabel>
+                                <Input
+                                    name="department"
+                                    ref={register({
+                                        required: 'Please enter a Department.'
+                                    })}
+                                    placeholder=""
+                                />
+                                <FormErrorMessage>{errors.department && errors.department.message}</FormErrorMessage>
+                            </FormControl>
                         </ModalBody>
 
                         <ModalFooter>
@@ -203,4 +225,4 @@ function AddDealModal({openAuthModal}) {
     );
 }
 
-export default withAuthModal(AddDealModal);
+export default withAuthModal(AddItemModal);

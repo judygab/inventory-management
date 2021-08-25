@@ -2,7 +2,7 @@ import {useColorMode, Stack, Text, Box, Flex} from '@chakra-ui/core';
 import React from 'react';
 
 import {ComponentLink} from './NavLink';
-import AddDealModal from './AddDealModal';
+import AddItemModal from './AddItemModal';
 import Deal from '../icons/Deal';
 import Filters from './Filters';
 import Home from '../icons/Home';
@@ -23,11 +23,11 @@ const PageLinks = () => (
         <SideNavLink href="/" icon={Home}>
             {'Home'}
         </SideNavLink>
+        <SideNavLink href="/items" icon={WineGlass}>
+            {'Items'}
+        </SideNavLink>
         <SideNavLink href="/deals" icon={Deal}>
             {'Deals'}
-        </SideNavLink>
-        <SideNavLink href="/bars" icon={WineGlass}>
-            {'Bars'}
         </SideNavLink>
         <SideNavLink href="/map" icon={Map}>
             {'Map'}
@@ -53,8 +53,7 @@ const SideNav = (props) => {
                 <Box>
                     <Flex justify="space-between" direction="column" height="calc(100vh - 4rem)" fontSize="sm" p="6">
                         <PageLinks />
-                        <Filters />
-                        <AddDealModal />
+                        <AddItemModal />
                     </Flex>
                 </Box>
             </Box>

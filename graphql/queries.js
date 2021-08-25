@@ -1,5 +1,14 @@
 import gql from 'graphql-tag';
 
+export const GET_ITEMS_QUERY = gql`
+  query getItems {
+    items {
+      id
+      name
+    }
+  }
+`;
+
 export const GET_DEALS_QUERY = gql`
     query getDeals($dayOfWeek: String!) {
         deals(where: {daysActive: {dayOfWeek: {_eq: $dayOfWeek}}}) {

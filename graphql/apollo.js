@@ -117,7 +117,7 @@ function createApolloClient(initialState = {}) {
     return new ApolloClient({
         ssrMode: typeof window === 'undefined',
         link: new HttpLink({
-            uri: process.env.GRAPHQL_URL,
+            uri: process.env.NEXT_PUBLIC_GRAPHQL_URL,
             credentials: 'same-origin',
             fetch
         }),
