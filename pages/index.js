@@ -3,6 +3,7 @@ import NextLink from 'next/link';
 
 import {withSignInRedirect} from '../components/Auth';
 import Logo from '../components/Logo';
+import ContactUs from '../components/ContactUs';
 
 export const Container = (props) => <Box width="full" maxWidth="1280px" mx="auto" px={6} {...props} />;
 
@@ -28,24 +29,24 @@ const Header = ({onSignIn}) => (
 
 const HomePage = ({onSignIn}) => {
     return (
+      <>
         <Box h="100vh">
             <Header onSignIn={onSignIn} />
             <Box as="section" pt={40} pb={24}>
                 <Container>
                     <Box maxW="xl" mx="auto" textAlign="center">
                         <Heading as="h1" size="xl" fontWeight="black">
-                            Find the cheapest drinks deals happening right now.
+                          Inventory management made easy
                         </Heading>
 
                         <Text opacity="0.7" fontSize="lg" mt="6">
-                            daydrink helps you find the best drink deals and happy hours in your area. View the cheapest
-                            drinks for the day and filter down to exactly what you're searching for.
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                         </Text>
 
                         <Box mt="6">
-                            <NextLink href="/signup" passHref>
+                            <NextLink href="/contactus" passHref>
                                 <Button size="lg" as="a" variantColor="teal">
-                                    Let's Get Started
+                                    Get Started
                                 </Button>
                             </NextLink>
                         </Box>
@@ -53,6 +54,8 @@ const HomePage = ({onSignIn}) => {
                 </Container>
             </Box>
         </Box>
+        <ContactUs />
+        </>
     );
 };
 
