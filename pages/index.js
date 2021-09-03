@@ -19,7 +19,7 @@ const Header = ({onSignIn}) => (
                         {'Sign In'}
                     </Button>
                     <NextLink href="/deals" passHref>
-                        <Button as="a">{'Find Deals'}</Button>
+                        <Button as="a">{'Request a Demo'}</Button>
                     </NextLink>
                 </Flex>
             </Flex>
