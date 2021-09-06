@@ -13,6 +13,7 @@ import {withApollo} from '../graphql/apollo';
 import App from '../components/App';
 import DealCard from '../components/DealCard';
 import AddItemModal from '../components/AddItemModal';
+import EditItemModal from '../components/EditItemModal';
 import EmptySearch from '../components/EmptySearch';
 import ColumnHeader from '../components/Table/ColumnHeader';
 import ItemDetail from '../components/Table/ItemDetail';
@@ -28,6 +29,8 @@ const ItemsPage = () => {
     // const matchesSearch = (deal) => deal.description.toLowerCase().includes(search.toLowerCase());
     // const matchesAlcoholType = (deal) => alcoholTypeFilters.includes(deal.alcoholType);
     const allItems = data ? data.items : [];
+    //// TEMP:
+    const item = {name: 'Portillo Malbec 1.5L', price: 38, quantity: 5, markup: 24, margin: 36, supplier: 'Hellen', department: 'Tonys'};
     // const filteredDeals = allDeals.filter(matchesSearch).filter(matchesAlcoholType);
     const columns = React.useMemo(
       () => [
@@ -139,7 +142,7 @@ const ItemsPage = () => {
                                           <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-blue-900 text-sm leading-5">Spencer</td>
                                           <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-blue-900 text-sm leading-5">August 17</td>
                                           <td className="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-500 text-sm leading-5">
-                                              <button className="px-5 py-2 border-blue-500 border text-blue-500 rounded transition duration-300 hover:bg-blue-700 hover:text-white focus:outline-none">View Details</button>
+                                              <EditItemModal item={item}/>
                                           </td>
                                 </tr>
                                 <tr>
