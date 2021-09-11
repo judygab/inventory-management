@@ -6,6 +6,7 @@ import {
   Spinner,
 } from "@chakra-ui/core"
 
+import React, {useState, useRef} from 'react';
 import {useItems} from '../graphql/hooks';
 import {useAuth} from '../utils/auth';
 import {useSearch} from '../utils/search';
@@ -32,6 +33,42 @@ const ItemsPage = () => {
     //// TEMP:
     const item = {name: 'Portillo Malbec 1.5L', price: 38, quantity: 5, markup: 24, margin: 36, supplier: 'Hellen', department: 'Tonys'};
     // const filteredDeals = allDeals.filter(matchesSearch).filter(matchesAlcoholType);
+    const [items, setItems] = useState([
+      {
+        name: "Portillo Marlbec 1.5L",
+        id: 1,
+        price: 15,
+        markup: "78%",
+        margin: "45%",
+        quantity: 10,
+        supplier: "Hartley",
+        department: "Spencer",
+        createdAd: "August 17",
+      },
+      {
+        name: "Lillet Roce 750 ml",
+        id: 2,
+        price: 23.45,
+        markup: "85%",
+        margin: "43%",
+        quantity: 0,
+        supplier: "Hartley",
+        department: "Spencer",
+        createdAd: "August 17",
+      },
+      {
+        name: "Bombay 200ml",
+        id: 3,
+        price: 25.60,
+        markup: "79%",
+        margin: "33%",
+        quantity: 3,
+        supplier: "Hartley",
+        department: "Spencer",
+        createdAd: "August 17",
+      },
+    ]);
+
     const columns = React.useMemo(
       () => [
         {
@@ -70,6 +107,22 @@ const ItemsPage = () => {
       [],
     )
 
+    const quantityChange = (id, increment) => {
+      if (increment) {
+        let updatedItems = items.map((item) => item.id === id ? {
+          ...item,
+          quantity: item.quantity+1
+        } : item);
+        setItems(updatedItems);
+      } else {
+        let updatedItems = items.map((item) => item.id === id ? {
+          ...item,
+          quantity: item.quantity-1
+        } : item);
+        setItems(updatedItems);
+      }
+    }
+
     return (
         <App width="full" maxWidth="1280px" mx="auto" px={6} py={6}>
             {loading ? (
@@ -93,79 +146,41 @@ const ItemsPage = () => {
                                             />
                                         ))
                                       }
-                                      <th scope="col" class="relative px-6 py-3">
-                                        <span class="sr-only">Edit</span>
+                                      <th scope="col" className="relative px-6 py-3">
+                                        <span className="sr-only">Edit</span>
                                       </th>
                                   </tr>
                               </thead>
                               <tbody className="bg-white divide-y divide-gray-200">
-                                      <tr>
-                                          <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                                              <div className="flex items-center">
-                                                  <div>
-                                                      <div className="text-sm leading-5 text-gray-800">Portillo Malbec 1.5L</div>
-                                                  </div>
-                                              </div>
-                                          </td>
-                                          <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                                              <div className="text-sm leading-5 text-blue-900">15</div>
-                                          </td>
-                                          <td className="px-6 py-4 whitespace-no-wrap border-b text-blue-900 border-gray-500 text-sm leading-5">78%</td>
-                                          <td className="px-6 py-4 whitespace-no-wrap border-b text-blue-900 border-gray-500 text-sm leading-5">45%</td>
-                                          <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-blue-900 text-sm leading-5">
-                                            <div className="flex items-center py-1 justify-around">
-                                              <MinusCircleIcon className="h-5 w-5 text-blue-500"/>10<PlusCircleIcon className="h-5 w-5 text-blue-500"/>
-                                            </div>
-                                          </td>
-                                          <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-blue-900 text-sm leading-5">Hartley</td>
-                                          <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-blue-900 text-sm leading-5">Spencer</td>
-                                                <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-blue-900 text-sm leading-5">August 17</td>
-                                                <td class="px-6 py-4 whitespace-nowrap border-b border-gray-500 text-right text-sm font-medium">
-                                                  <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                                                </td>
-                                </tr>
-                                     <tr>
-                                          <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                                              <div className="flex items-center">
-                                                  <div>
-                                                      <div className="text-sm leading-5 text-gray-800">Lillet Roce 750 ml</div>
-                                                  </div>
-                                              </div>
-                                          </td>
-                                          <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                                              <div className="text-sm leading-5 text-blue-900">23.45</div>
-                                          </td>
-                                          <td className="px-6 py-4 whitespace-no-wrap border-b text-blue-900 border-gray-500 text-sm leading-5">85%</td>
-                                          <td className="px-6 py-4 whitespace-no-wrap border-b text-blue-900 border-gray-500 text-sm leading-5">43%</td>
-                                          <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-blue-900 text-sm leading-5">0</td>
-                                          <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-blue-900 text-sm leading-5">Hartley</td>
-                                          <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-blue-900 text-sm leading-5">Spencer</td>
-                                          <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-blue-900 text-sm leading-5">August 17</td>
-                                          <td className="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-500 text-sm leading-5">
-                                              <EditItemModal item={item}/>
-                                          </td>
-                                </tr>
-                                <tr>
-                                          <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                                              <div className="flex items-center">
-                                                  <div>
-                                                      <div className="text-sm leading-5 text-gray-800">Bombay 200ml</div>
-                                                  </div>
-                                              </div>
-                                          </td>
-                                          <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                                              <div className="text-sm leading-5 text-blue-900">25.60</div>
-                                          </td>
-                                          <td className="px-6 py-4 whitespace-no-wrap border-b text-blue-900 border-gray-500 text-sm leading-5">79%</td>
-                                          <td className="px-6 py-4 whitespace-no-wrap border-b text-blue-900 border-gray-500 text-sm leading-5">33%</td>
-                                          <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-blue-900 text-sm leading-5">0</td>
-                                          <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-blue-900 text-sm leading-5">Hartley</td>
-                                          <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-blue-900 text-sm leading-5">Spencer</td>
-                                          <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-blue-900 text-sm leading-5">August 17</td>
-                                          <td className="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-500 text-sm leading-5">
-                                              <button className="px-5 py-2 border-blue-500 border text-blue-500 rounded transition duration-300 hover:bg-blue-700 hover:text-white focus:outline-none">View Details</button>
-                                          </td>
-                                </tr>
+                                      {
+                                        items.map((item) => (
+                                          <tr>
+                                             <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
+                                                 <div className="flex items-center">
+                                                     <div>
+                                                         <div className="text-sm leading-5 text-gray-800">{item.name}</div>
+                                                     </div>
+                                                 </div>
+                                             </td>
+                                             <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
+                                                 <div className="text-sm leading-5 text-blue-900">{item.price}</div>
+                                             </td>
+                                             <td className="px-6 py-4 whitespace-no-wrap border-b text-blue-900 border-gray-500 text-sm leading-5">{item.markup}</td>
+                                             <td className="px-6 py-4 whitespace-no-wrap border-b text-blue-900 border-gray-500 text-sm leading-5">{item.margin}</td>
+                                             <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-blue-900 text-sm leading-5">
+                                             <div className="flex items-center py-1 justify-around">
+                                               <MinusCircleIcon onClick={() => quantityChange(item.id, false)} className="h-5 w-5 text-blue-500 hover:text-blue-700 active:text-blue-700"/>{item.quantity}<PlusCircleIcon onClick={() => quantityChange(item.id, true)} className="h-5 w-5 text-blue-500 hover:text-blue-700 active:text-blue-700"/>
+                                             </div>
+                                             </td>
+                                             <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-blue-900 text-sm leading-5">{item.supplier}</td>
+                                             <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-blue-900 text-sm leading-5">{item.department}</td>
+                                             <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-blue-900 text-sm leading-5">{item.createdAt}</td>
+                                             <td className="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-500 text-sm leading-5">
+                                                 <EditItemModal item={item}/>
+                                             </td>
+                                          </tr>
+                                        ))
+                                      }
                               </tbody>
                           </table>
                       </div>
