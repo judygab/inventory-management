@@ -1,10 +1,35 @@
+import React, { useState } from 'react';
+import { Alert, AlertIcon, AlertTitle, AlertDescription } from '@chakra-ui/core';
+
 const ContactUs = () => {
+  const [success, setSuccess] = useState(false);
+
   return (
     <div className="flex items-center min-h-screen bg-gray-50 dark:bg-gray-900">
         <div className="container mx-auto">
             <div className="max-w-md mx-auto my-10 bg-white p-5 rounded-md shadow-sm">
                 <div className="text-center">
                     <h1 className="my-3 text-3xl font-semibold text-gray-700 dark:text-gray-200">Contact Us</h1>
+                    {
+                      success &&
+                      <Alert
+                        status="success"
+                        variant="subtle"
+                        flexDirection="column"
+                        alignItems="center"
+                        justifyContent="center"
+                        textAlign="center"
+                        height="200px"
+                      >
+                        <AlertIcon boxSize="40px" mr={0} />
+                        <AlertTitle mt={4} mb={1} fontSize="lg" color="gray.700">
+                          Thank you for reaching out!
+                        </AlertTitle>
+                        <AlertDescription maxWidth="sm" color="gray.700">
+                          Our team will get back to you as soon as possible.
+                        </AlertDescription>
+                      </Alert>
+                    }
                     <p className="text-gray-400 dark:text-gray-400">Fill up the form below to send us a message.</p>
                 </div>
                 <div className="m-7">
