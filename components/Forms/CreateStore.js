@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Alert, AlertIcon, AlertTitle, AlertDescription } from '@chakra-ui/core';
 
 const CreateStore = () => {
   const [formData, setFormData] = useState({
@@ -17,12 +18,34 @@ const CreateStore = () => {
       [event.target.name]: event.target.value
   });
 
+  const [success, setSuccess] = useState(false);
+
   const { name, taxId, phone, street, city, state, zipCode } = formData;
 
   return (
     <div className="flex items-center min-h-screen bg-gray-50 dark:bg-gray-900">
         <div className="container mx-auto">
             <div className="max-w-5xl mx-auto my-10 bg-white p-5 rounded-md shadow-sm">
+                {
+                  success ?
+                  <Alert
+                    status="success"
+                    variant="subtle"
+                    flexDirection="column"
+                    alignItems="center"
+                    justifyContent="center"
+                    textAlign="center"
+                    height="200px"
+                  >
+                    <AlertIcon boxSize="40px" mr={0} />
+                    <AlertTitle mt={4} mb={1} fontSize="lg" color="gray.700">
+                      Your store has been created!
+                    </AlertTitle>
+                    <AlertDescription maxWidth="sm" color="gray.700">
+                      View your store, start customizing and adding items.
+                    </AlertDescription>
+                  </Alert> :
+                  <>
                 <div className="text-center">
                     <h1 className="my-3 text-3xl font-semibold text-gray-700 dark:text-gray-200">Store Details</h1>
                     <p className="text-gray-400 dark:text-gray-400">Please enter your store details</p>
@@ -77,6 +100,8 @@ const CreateStore = () => {
                         </div>
                     </form>
                 </div>
+                </>
+              }
             </div>
         </div>
     </div>
