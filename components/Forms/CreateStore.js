@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Alert, AlertIcon, AlertTitle, AlertDescription } from '@chakra-ui/core';
+import { Alert, AlertIcon, AlertTitle, AlertDescription, Button } from '@chakra-ui/core';
+import NextLink from 'next/link';
 
 const CreateStore = () => {
   const [formData, setFormData] = useState({
@@ -28,6 +29,7 @@ const CreateStore = () => {
             <div className="max-w-5xl mx-auto my-10 bg-white p-5 rounded-md shadow-sm">
                 {
                   success ?
+                  <>
                   <Alert
                     status="success"
                     variant="subtle"
@@ -36,6 +38,7 @@ const CreateStore = () => {
                     justifyContent="center"
                     textAlign="center"
                     height="200px"
+                    className="m-2"
                   >
                     <AlertIcon boxSize="40px" mr={0} />
                     <AlertTitle mt={4} mb={1} fontSize="lg" color="gray.700">
@@ -44,7 +47,16 @@ const CreateStore = () => {
                     <AlertDescription maxWidth="sm" color="gray.700">
                       View your store, start customizing and adding items.
                     </AlertDescription>
-                  </Alert> :
+                  </Alert>
+                  <div className="flex">
+                    <NextLink href="/items" passHref>
+                      <Button as="a" variantColor="teal" className="m-2 mx-auto block" variant="solid" minH="40px" w="30%">
+                          Go to Dashboard
+                      </Button>
+                    </NextLink>
+                  </div>
+                  </>
+                  :
                   <>
                 <div className="text-center">
                     <h1 className="my-3 text-3xl font-semibold text-gray-700 dark:text-gray-200">Store Details</h1>
