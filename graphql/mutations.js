@@ -63,3 +63,21 @@ export const INSERT_USER_DEAL_MUTATION = gql`
         }
     }
 `;
+
+
+export const CREATE_STORE_MUTATION = gql`
+   mutation createStore($city: String!, $name: String!, $phone: String!, $state: String!, $street: String!, $taxId: String, $zipCode: Int!) {
+     insert_stores(on_conflict: {constraint: stores_pkey}, objects: {city: $city, name: $name, phone: $phone, state: $state, street: $street, taxId: $taxId, zipCode: $zipCode}) {
+       returning {
+         city
+         id
+         name
+         phone
+         state
+         street
+         taxId
+         zipCode
+       }
+      }
+   }
+`;

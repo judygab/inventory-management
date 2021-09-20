@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Alert, AlertIcon, AlertTitle, AlertDescription, Button } from '@chakra-ui/core';
 import NextLink from 'next/link';
+import {withAuthModal} from '../Auth';
+import {useQuery, useMutation} from '@apollo/react-hooks';
+import {CREATE_STORE_MUTATION} from '../../graphql/mutations';
 
 const CreateStore = () => {
   const [formData, setFormData] = useState({
@@ -13,6 +16,8 @@ const CreateStore = () => {
     zipCode: "",
   });
 
+  const [addStore, {loading, error}] = useMutation(CREATE_STORE_MUTATION);
+
   const updateFormData = event =>
     setFormData({
       ...formData,
@@ -21,7 +26,28 @@ const CreateStore = () => {
 
   const [success, setSuccess] = useState(false);
 
+  const onCreateStore = (data) => {
+
+      addStore({
+          variables: {
+              city: data.city,
+              name: data.name,
+              phone: data.phone,
+              state: data.state,
+              street: data.street,
+              taxId: ata.taxId,
+              zipCode: data.zipCode,
+          },
+      });
+
+      if (!error && !loading) {
+        setSuccess(true);
+      }
+  };
+
   const { name, taxId, phone, street, city, state, zipCode } = formData;
+
+  if (error) return `Submission error! ${error.message}`;
 
   return (
     <div className="flex items-center min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -119,4 +145,4 @@ const CreateStore = () => {
     </div>
   )
 }
-export default CreateStore;
+export default withAuthModal(CreateStore);

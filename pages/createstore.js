@@ -1,4 +1,5 @@
 import CreateStore from '../components/Forms/CreateStore';
+import {withApollo} from '../graphql/apollo';
 
 const CreateStorePage = () => {
   return (
@@ -6,4 +7,6 @@ const CreateStorePage = () => {
   )
 }
 
-export default CreateStorePage;
+export default withApollo(CreateStorePage, {
+    ssr: false
+});
