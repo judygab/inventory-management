@@ -8,6 +8,7 @@ import Filters from './Filters';
 import Home from '../icons/Home';
 import Map from '../icons/Map';
 import WineGlass from '../icons/WineGlass';
+import { CogIcon } from '@heroicons/react/solid';
 
 const SideNavLink = ({href, children, icon}) => (
     <ComponentLink href={href}>
@@ -29,8 +30,8 @@ const PageLinks = () => (
         <SideNavLink href="/deals" icon={Deal}>
             {'Deals'}
         </SideNavLink>
-        <SideNavLink href="/map" icon={Map}>
-            {'Map'}
+        <SideNavLink href="/settings" icon={CogIcon}>
+            {'Settings'}
         </SideNavLink>
     </Stack>
 );
