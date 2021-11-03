@@ -26,13 +26,14 @@ import {calculateScoreAndSortDesc} from '../utils/deals';
 
 export const useItems = () => {
   const {loading, error, data} = useQuery(GET_ITEMS_QUERY, {});
+  console.log(error);
 
   if (!loading && data) {
     return {
       loading,
       error,
       data: {
-        items: items
+        items: data.items
       }
     };
   }

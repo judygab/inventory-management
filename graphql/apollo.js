@@ -119,6 +119,9 @@ function createApolloClient(initialState = {}) {
         link: new HttpLink({
             uri: process.env.NEXT_PUBLIC_GRAPHQL_URL,
             credentials: 'same-origin',
+            headers: {
+              'x-hasura-admin-secret': process.env.NEXT_PUBLIC_SECRET
+            },
             fetch
         }),
         cache: new InMemoryCache().restore(initialState)

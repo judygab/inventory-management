@@ -21,7 +21,6 @@
         "apollo-cache-inmemory": "^1.6.5",
         "apollo-client": "^2.6.8",
         "apollo-link-http": "^1.5.16",
-        "autoprefixer": "^9",
         "date-fns": "^2.9.0",
         "emotion-theming": "10.0.27",
         "firebase": "^7.7.0",
@@ -29,21 +28,22 @@
         "graphql-tag": "^2.10.1",
         "isomorphic-unfetch": "^3.0.0",
         "next": "9.4.0",
-        "postcss": "^7",
         "query-string": "^6.10.0",
         "react": "^16.8.6",
         "react-dom": "^16.8.6",
         "react-hook-form": "^4.5.5",
-        "react-map-gl": "^5.2.1",
-        "tailwindcss": "npm:@tailwindcss/postcss7-compat"
+        "react-map-gl": "^5.2.1"
     },
     "devDependencies": {
         "@testing-library/jest-dom": "^5.0.2",
         "@testing-library/react": "^9.4.0",
         "@types/react": "^16.9.19",
+        "autoprefixer": "^9.8.8",
         "babel-jest": "^24.9.0",
         "jest": "^24.9.0",
         "mutationobserver-shim": "^0.3.3",
+        "postcss": "^7.0.39",
+        "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17",
         "typescript": "^3.7.5"
     }
 }

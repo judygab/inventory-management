@@ -4,7 +4,13 @@ export const GET_ITEMS_QUERY = gql`
   query getItems {
     items {
       id
+      margin
+      markup
       name
+      price
+      supplier
+      created_at
+      department
     }
   }
 `;

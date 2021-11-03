@@ -81,3 +81,33 @@ export const CREATE_STORE_MUTATION = gql`
       }
    }
 `;
+
+export const UPDATE_ITEM_MUTATION = gql`
+    mutation updateItemByID($item_id: uuid!, $item_price: numeric!, $item_department: String!, $item_margin: numeric!, $item_markup: numeric!, $item_name: String!, $item_supplier: String!) {
+      update_items_by_pk(_set: {price: $item_price, department: $item_department, margin: $item_margin, markup: $item_markup, name: $item_name, supplier: $item_supplier}, pk_columns: {id: $item_id}) {
+        department
+        margin
+        markup
+        name
+        price
+        supplier
+        updated_at
+      }
+    }
+`;
+
+export const INSERT_ITEM_MUTATION = gql`
+  mutation insertItemByOne($department: String!, $margin: numeric, $markup: numeric, $name: String!, $price: numeric, $supplier: String!) {
+    insert_items_one(object: {department: $department, margin: $margin, markup: $markup, name: $name, price: $price, supplier: $supplier}) {
+      created_at
+      department
+      id
+      margin
+      markup
+      name
+      price
+      supplier
+      updated_at
+    }
+  }
+`;

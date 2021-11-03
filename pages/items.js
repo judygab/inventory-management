@@ -33,6 +33,7 @@ const ItemsPage = () => {
     //// TEMP:
     const item = {name: 'Portillo Malbec 1.5L', price: 38, quantity: 5, markup: 24, margin: 36, supplier: 'Hellen', department: 'Tonys'};
     // const filteredDeals = allDeals.filter(matchesSearch).filter(matchesAlcoholType);
+
     const [items, setItems] = useState([
       {
         name: "Portillo Marlbec 1.5L",
