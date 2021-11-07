@@ -20,18 +20,21 @@ import AddItemModal from '../components/AddItemModal';
 import EditItemModal from '../components/EditItemModal';
 import EmptySearch from '../components/EmptySearch';
 import ColumnHeader from '../components/Table/ColumnHeader';
+import Link from 'next/link';
 
 const SettingsPage = () => {
     const {userId} = useAuth();
 
-    const MenuItem = ({ title, desc, ...rest }) => {
+    const MenuItem = ({ title, desc, to, ...rest }) => {
       return (
-        <Box p={5} shadow="md" borderWidth="1px" {...rest}>
-        <button>
-          <Heading textAlign="left" fontSize="xl">{title}</Heading>
-          <Text mt={4}>{desc}</Text>
-          </button>
-        </Box>
+        <Link href={to} passHref>
+          <Box p={5} shadow="md" borderWidth="1px" {...rest}>
+            <button>
+              <Heading textAlign="left" fontSize="xl">{title}</Heading>
+              <Text mt={4}>{desc}</Text>
+            </button>
+          </Box>
+        </Link>
       )
     }
 
@@ -41,10 +44,12 @@ const SettingsPage = () => {
           <MenuItem
             title="Account"
             desc="Manage your account and permissions"
+            to="account"
           />
           <MenuItem
             title="General"
             desc="View and update your store details"
+            to="account"
           />
         </Stack>
       </App>
