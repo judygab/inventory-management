@@ -20,12 +20,16 @@ import ColumnHeader from '../components/Table/ColumnHeader';
 import ItemDetail from '../components/Table/ItemDetail';
 import { PlusCircleIcon } from '@heroicons/react/solid';
 import { MinusCircleIcon } from '@heroicons/react/solid';
+import { UPDATE_ITEM_QUANTITY_MUTATION } from '../graphql/mutations';
+import {useQuery, useMutation} from '@apollo/react-hooks';
 
 const ItemsPage = () => {
     const {userId} = useAuth();
     // const {dayOfWeek, alcoholTypeFilters, search} = useSearch();
     // const {data, loading} = useDeals(dayOfWeek);
     const {data, loading} = useItems({});
+    const [updateQuantity] = useMutation(UPDATE_ITEM_QUANTITY_MUTATION);
+    const [quantityUpdating, setQuantityUpdating] = useState(0);
     //
     // const matchesSearch = (deal) => deal.description.toLowerCase().includes(search.toLowerCase());
     // const matchesAlcoholType = (deal) => alcoholTypeFilters.includes(deal.alcoholType);
@@ -122,6 +126,15 @@ const ItemsPage = () => {
         } : item);
         setItems(updatedItems);
       }
+      let item = items.filter((item) => {return item.id === id});
+      // setTimeout(() => {
+      //   updateQuantity({
+      //     variables: {
+      //       id: item.id,
+      //       quantity: item.quantity
+      //     }
+      //   })
+      // }, 5000);
     }
 
     return (

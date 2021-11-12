@@ -111,3 +111,11 @@ export const INSERT_ITEM_MUTATION = gql`
     }
   }
 `;
+
+export const UPDATE_ITEM_QUANTITY_MUTATION = gql`
+  mutation UpdateQuantity($id: uuid!, $quantity: Int) {
+    update_items_by_pk(pk_columns: {id: $id}, _set: {quantity: $quantity}) {
+      quantity
+    }
+  }
+`;
